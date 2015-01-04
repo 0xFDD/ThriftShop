@@ -1,0 +1,32 @@
+/* Swipe works with mouse as well but often causes text selection. */
+/* We'll deny text selecton on everything but INPUTs and TEXTAREAs. */
+#menu :not(INPUT):not(TEXTAREA) {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+/* Content styling. */
+dl { font-family: "Times New Roman", Times, serif; padding: 1em; }
+dt { font-size: 2em; font-weight: bold; }
+dt span { font-size: .5em; color: #777; margin-left: .5em; }
+dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+.back-btn { float: right; margin: 0 2em 1em 0; }
+
+body {
+	background: url(../img/background.jpg) !important;
+    background-repeat:repeat-y;
+    background-position:center center;
+    background-attachment:scroll;
+}
+.ui-page, .ui-content, .ui-btn {
+	background: transparent;
+}
+
+/*----------------------password strength-------------------------*/
+.password_strength {width: 100%; height: 5px; margin-bottom: -5px;}
+.pass_state01 {background-image: url("../img/strength_1.gif"); width: 25%;}
+.pass_state02 {background-image: url("../img/strength_2.gif"); width: 50%;}
+.pass_state03 {background-image: url("../img/strength_3.gif"); width: 75%;}
+.pass_state04 {background-image: url("../img/strength_4.gif"); width: 100%;}

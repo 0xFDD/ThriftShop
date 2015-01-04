@@ -1,0 +1,56 @@
+2014-12-26 15:00:48.804 ThriftShop[2858:80112] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Data/Application/189B092B-0BAD-41F3-8084-2BF7694CBC97/Library/Cookies/Cookies.binarycookies
+2014-12-26 15:00:49.043 ThriftShop[2858:80112] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-26 15:00:49.043 ThriftShop[2858:80112] Multi-tasking -> Device: YES, App: YES
+2014-12-26 15:00:49.055 ThriftShop[2858:80112] Unlimited access to network resources
+2014-12-26 15:00:49.064 ThriftShop[2858:80112] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2014-12-26 15:00:50.236 ThriftShop[2858:80112] Resetting plugins due to page load.
+2014-12-26 15:00:50.360 ThriftShop[2858:80112] Finished load of: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Bundle/Application/E8B15A0C-9C26-4A1C-87B3-0C1A97C2601C/ThriftShop.app/www/index.html
+2014-12-26 15:14:51.989 ThriftShop[3015:85321] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Data/Application/C668184F-7343-43D6-ACA3-6DD70E8EBC6B/Library/Cookies/Cookies.binarycookies
+2014-12-26 15:14:52.064 ThriftShop[3015:85321] Apache Cordova native platform version 3.7.0 is starting.
+2014-12-26 15:14:52.064 ThriftShop[3015:85321] Multi-tasking -> Device: YES, App: YES
+2014-12-26 15:14:52.065 ThriftShop[3015:85321] Unlimited access to network resources
+2014-12-26 15:14:52.066 ThriftShop[3015:85321] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2014-12-26 15:14:52.261 ThriftShop[3015:85321] Resetting plugins due to page load.
+2014-12-26 15:14:52.443 ThriftShop[3015:85321] Finished load of: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Bundle/Application/BDCD0192-3FB5-4DE3-95A9-19CDEAA273FC/ThriftShop.app/www/index.html
+2015-01-02 14:28:04.872 ThriftShop[2802:67930] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Data/Application/5CE5D8A5-0C76-4B32-BDBD-31614F0CD445/Library/Cookies/Cookies.binarycookies
+2015-01-02 14:28:05.112 ThriftShop[2802:67930] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-02 14:28:05.112 ThriftShop[2802:67930] Multi-tasking -> Device: YES, App: YES
+2015-01-02 14:28:05.126 ThriftShop[2802:67930] Unlimited access to network resources
+2015-01-02 14:28:05.134 ThriftShop[2802:67930] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-02 14:28:05.786 ThriftShop[2802:67930] Resetting plugins due to page load.
+2015-01-02 14:28:06.050 ThriftShop[2802:67930] Finished load of: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Bundle/Application/B70BAC14-E821-4CFF-88E7-1CC7F1A500E0/ThriftShop.app/www/index.html
+2015-01-04 23:15:25.694 ThriftShop[2741:70122] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Data/Application/A6C39B0D-6A98-4D1D-956D-A21B2E385C9F/Library/Cookies/Cookies.binarycookies
+2015-01-04 23:15:25.929 ThriftShop[2741:70122] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-04 23:15:25.930 ThriftShop[2741:70122] Multi-tasking -> Device: YES, App: YES
+2015-01-04 23:15:25.944 ThriftShop[2741:70122] Unlimited access to network resources
+2015-01-04 23:15:25.952 ThriftShop[2741:70122] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-01-04 23:15:26.527 ThriftShop[2741:70122] Resetting plugins due to page load.
+2015-01-04 23:15:26.842 ThriftShop[2741:70122] Finished load of: file:///Users/riemer/Library/Developer/CoreSimulator/Devices/9FF1DF76-791C-42AB-B259-74016C8B5144/data/Containers/Bundle/Application/8F034A15-64FB-4132-8BC3-EDD4ADB131D0/ThriftShop.app/www/index.html

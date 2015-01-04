@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+
+	    <!-- Apple -->
+	      <!-- Hiding Safari User Interface Components -->
+	  	<meta name="apple-mobile-web-app-capable" content="yes">
+	      <!-- Changing the Status Bar Appearance -->
+	  	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	  	<link rel="apple-touch-startup-image" href="img/touch-icon.png">
+	  	<link rel="apple-touch-icon" href="img/touch-icon.png">
+	  	<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon.png">
+	  	<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon.png">
+	  	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon.png">
+	    <!-- Android -->
+	  	<meta name="mobile-web-app-capable" content="yes">
+	  	<link rel="icon" sizes="192x192" href="img/touch-icon.png">
+
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<link rel="stylesheet" href="css/thriftshop.css" />
+
+		<script type="text/javascript" charset="utf-8" src="js/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/thriftshop.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/jquery.hippo-password-strength.js"></script>
+		<script id="panel-init">
+			$(function() {
+				$( "body>[data-role='panel']" ).panel();
+			});
+		</script>
+        <title>ThriftShop</title>
+    </head>
+<body>
+
+<!-- Login page -->
+<div data-role="page" id="login">
+	<div role="main" class="ui-content">
+		<div style="text-align:center;"><img width="100%" src="img/thriftshop.png"></div>
+        <div data-role="fieldcontain">
+			<h2>Login</h2>
+         <p>
+		  <label id="val_username"> E-mail (gebruikersnaam): </label>
+          <input type="email" id="username" name="username" value="" autocorrect="off" autocapitalize="off">
+          <label id="val_password"> Wachtwoord: </label>
+          <input type="password" id="password" name="password" value="" data-clear-btn="true" maxlength="20" autocorrect="off" autocapitalize="off">
+		 </p>
+		 <p>
+          <a href="#menu" data-role="button" data-theme="b">Inloggen</a>
+		 </p>
+        </div>
+         <p><a href="#forgotpassword" data-transition="pop">Wachtwoord vergeten?</a></p>
+         <p><a href="#register">Nog niet geregistreerd?</a></p>
+	</div>
+</div>
+
+<!-- Register page -->
+<div data-role="page" id="register">
+
+	<div data-role="header">
+		<h1>Registreren</h1>
+		<a href="#login" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-carat-l ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+     <p>
+		  <label id="val_username"> Volledige naam: </label>
+          <input type="text" id="fullname" name="fullname" placeholder="Jan Appelboom" value="" autocorrect="off" autocapitalize="on"/>
+		  <label id="val_username"> E-mail: </label>
+          <input type="email" id="email" name="email" placeholder="jan@appelboom.nl" value="" autocorrect="off" autocapitalize="off"/>
+		  <label id="val_username"> Wachtwoord: </label>
+          <input type="password" class="password" id="passwd" name="passwd" placeholder="8-20 tekens" data-indicator="strengthLevel" value="" maxlength="20"/>
+		  <div id="strengthLevel" class="password_strength pass_state00"> </div>
+		  <label id="val_username"> Herhaal wachtwoord: </label>
+          <input type="password" id="passwdrep" name="passwdrep" placeholder="8-20 tekens" value="" maxlength="20"/>
+
+		  <p>Ik heb de <a href="terms.html" data-rel="dialog" data-transition="pop" data-rel="back">algemene voorwaarden</a> gelezen en ga hiermee akkoord.
+		  <input type="checkbox" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true"><label for="checkbox-mini-0">Ik ga akkoord</label></p>
+		  
+		  <a href="#" onclick="validateRegistration();return true;" data-role="button" data-theme="b">Registreer</a>
+	  </p>
+	</div>
+</div>
+
+<!-- Forgot password page -->
+<div data-role="page" id="forgotpassword" data-dialog="true">
+	
+	<div data-role="header">
+		<div style="text-align:center;"><img width="70%" style="padding:2%;" src="img/thriftshop.png"></div>
+		<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-btn-b ui-icon-delete ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main">
+		<div class="ui-body ui-body-a ui-corner-all">
+			<h2>Reset wachtwoord</h2>
+			<p>Vul je e-mailadres in. Je ontvangt per e-mail een activatielink waar je een nieuw wachtwoord kunt invoeren.</p>
+			
+			<input type="email" id="val_email_pwd_rst" name="email" placeholder="e-mail adres" value="" autocorrect="off" autocapitalize="off"/>
+			
+			<fieldset id="buttons" class="ui-grid-a">
+                <div class="ui-block-a"><a href="#" data-role="button" data-rel="back" data-theme="c">Annuleer</a></div>
+                <div class="ui-block-b"><a href="#" onclick="validateForgotPassword();" id="reset" data-role="button" data-theme="b">Reset</a></div>
+			</fieldset>
+		</div>
+	</div>
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+	<!-- Right panel  -->
+	<!-- <div data-role="panel" id="right-panel" data-position="right" data-position-fixed="true" data-display="push" data-theme="b">
+		<h2>Menu</h2>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div> -->
+	<!-- /Right panel -->
+
+<!-- Menu page -->
+<div data-role="page" id="menu" data-url="menu">
+
+	<div data-role="header">
+		<div style="display:inline-block;">
+			<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+			<div style="text-align:center;margin:auto;"><img width="80%" style="padding-top:2%;padding-bottom:0;margin-right:-5%;" src="img/thriftshop.png"></div>
+		</div>
+	</div>
+
+	<div role="main" class="ui-content">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn-b">Nieuw</a></li>
+				<li><a href="#" class="ui-btn-b">Populair</a></li>
+			</ul>
+		</div>
+
+		<form>
+			<input data-type="search" placeholder="Zoek op item, categorie etc." id="filterControlgroup-input">
+		</form>
+
+		<div class="ui-grid-b center" data-filter="true" data-input="#filterControlgroup-input" data-children="> div" data-inset="true">
+			<div class="ui-block-a" data-filtertext="tassen nieuw"><a href="#item"><div style="padding:3%;"><img src="img/14018297945965.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="truien"><a href="#item"><div style="padding:3%;"><img src="img/14094074444141.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="schoenen"><a href="#item"><div style="padding:3%;"><img src="img/14102009649834.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="truien populair"><a href="#item"><div style="padding:3%;"><img src="img/14125176022885.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="truien nieuw populair"><a href="#item"><div style="padding:3%;"><img src="img/14131968998824.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="blouses populair"><a href="#item"><div style="padding:3%;"><img src="img/14144189469448.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="schoenen populair"><a href="#item"><div style="padding:3%;"><img src="img/14149314014248.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="schoenen"><a href="#item"><div style="padding:3%;"><img src="img/14175246707445.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="shirts nieuw"><a href="#item"><div style="padding:3%;"><img src="img/14150452109951.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="broeken"><a href="#item"><div style="padding:3%;"><img src="img/14151022419437.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="shirts populair"><a href="#item"><div style="padding:3%;"><img src="img/14151929339757.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="jurken"><a href="#item"><div style="padding:3%;"><img src="img/14158175905788.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="shirts nieuw"><a href="#item"><div style="padding:3%;"><img src="img/14166649858229.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="jassen"><a href="#item"><div style="padding:3%;"><img src="img/14166664081434.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="shirts populair"><a href="#item"><div style="padding:3%;"><img src="img/14173482874142.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="schoenen populair"><a href="#item"><div style="padding:3%;"><img src="img/14174628557715.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="jurken"><a href="#item"><div style="padding:3%;"><img src="img/14150190436546.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="schoenen nieuw"><a href="#item"><div style="padding:3%;"><img src="img/14177186176587.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="jasseb"><a href="#item"><div style="padding:3%;"><img src="img/14186682405288.jpg" width="100%"></div></a></div>
+			<div class="ui-block-b" data-filtertext="rokken populair"><a href="#item"><div style="padding:3%;"><img src="img/14197935791112.jpg" width="100%"></div></a></div>
+			<div class="ui-block-c" data-filtertext="vesten populair"><a href="#item"><div style="padding:3%;"><img src="img/14202102165402.jpg" width="100%"></div></a></div>
+			<div class="ui-block-a" data-filtertext="schoenen"><a href="#item"><div style="padding:3%;"><img src="img/14202152063302.jpg" width="100%"></div></a></div>
+		</div>
+	</div>
+	
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+<!-- Closet page -->
+<div data-role="page" id="closet">
+
+	<div data-role="header">
+		<h1>Mijn kledingkast</h1>
+		<a href="#menu" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-shop ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+		<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+		
+		<div data-role="collapsibleset" data-theme="a" data-content-theme="b">
+			<div data-role="collapsible">
+			<h2>Shirts</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen shirts in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Blouses</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen blouses in je kledingkast</p>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Vesten</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen vesten in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Blazers</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen blazers in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Broeken</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen broeken in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Jurken <span class="ui-li-count">1</span></h2>
+				<ul data-role="listview" data-split-icon="edit">
+					<li><a href="#">
+						<img src="img/14158175905788.jpg">
+					<h2>Rode jurk</h2>
+					<p>Maat: 38</p>
+					<p>Omschrijving: Deze jurk is gekocht in de Fashion Store in Groningen.
+						Het jurkje heeft een onderjurk van goede kwaliteit, en een rits aan de zijkant.
+						Kleur komt overeen met eerste foto.
+						Je mag het komen ophalen of ik stuur het naar je op, maar de verzendkosten zijn wel voor jou.</p>
+						<p>Prijs <strong>&euro; 35,-</strong></p>
+						</a>
+						<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Rokken</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen rokken in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Jassen</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen jassen in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Schoenen <span class="ui-li-count">1</span></h2>
+				<ul data-role="listview" data-split-icon="edit">
+					<li><a href="#">
+						<img src="img/14175246707445.jpg">
+					<h2>Bruine veterschoenen</h2>
+					<p>Maat: 39</p>
+					<p>Omschrijving: Bruine, halfhoge schoenen van het merk Clarks. Ze zijn vrijwel nieuw.</p>
+					<p>Prijs <strong>&euro; 30,-</strong></p>
+						</a>
+						<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+			<h2>Accessoires</h2>
+				<ul data-role="listview" data-split-icon="plus">
+					<li><a href="#">
+					<p>Geen accessoires in je kledingkast</p>
+					</a>
+					<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop"></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+<!-- Profile page -->
+<div data-role="page" id="profile">
+
+	<div data-role="header">
+		<h1>Profiel</h1>
+		<a href="#menu" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-shop ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+		<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+		<div class="ui-body ui-body-a ui-corner-all">
+			<h2>Doutzen <a href="#" class="ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all" style="float:right;"></a> </h2>
+			<div style="text-align:center;"><img width="70%" style="border-radius: 200px;" src="img/doutzen.jpg"></div>
+			<p><strong>Advertenties:</strong> 40</p>
+			<p><strong>Leeftijd:</strong> 29</p>
+			<p><strong>Kledingmaat:</strong> 36</p>
+			<p><strong>Schoenmaat:</strong> 40</p>
+			<p><strong>Locatie:</strong> Groningen</p>
+			<br>
+		</div>
+	</div>
+
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+<!-- Item page -->
+<div data-role="page" id="item">
+
+	<div data-role="header">
+		<h1>Item</h1>
+		<a href="#menu" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-shop ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+		<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+		<div class="ui-body ui-body-a ui-corner-all">
+			<p><strong>Rode jurk</strong></p>
+			<div style="text-align:center;"><img width="80%" src="img/14158175905788.jpg"></div>
+			<p><strong>Omschrijving</strong></p>
+			<p>Maat: 38</p>
+			<p>Prijs: &euro; 35,-</p>
+			<p>Locatie: Groningen</p>
+			<p>Deze jurk is gekocht in de Fashion Store in Groningen.
+				Het jurkje heeft een onderjurk van goede kwaliteit, en een rits aan de zijkant.
+				Kleur komt overeen met eerste foto.
+				Je mag het komen ophalen of ik stuur het naar je op, maar de verzendkosten zijn wel voor jou.</p>
+			<br>
+		</div>
+		
+		<div data-role="navbar">
+			<br>
+			<ul>
+				<li><a href="#" class="ui-btn-b" data-icon="heart">Favoriet</a></li>
+				<li><a href="#" class="ui-btn-b" data-icon="comment">Reageer</a></li>
+				<li><a href="#" class="ui-btn-b" data-icon="user">Gebruiker</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+<!-- Categories page -->
+<div data-role="page" id="categories">
+
+	<div data-role="header">
+		<h1>Categorieën</h1>
+		<a href="#menu" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-shop ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+		<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+		<ul data-role="listview" data-count-theme="b" data-inset="true">
+			<li><a href="#">Shirts <span class="ui-li-count">12</span></a></li>
+			<li><a href="#">Blouses <span class="ui-li-count">41</span></a></li>
+			<li><a href="#">Vesten <span class="ui-li-count">4</span></a></li>
+			<li><a href="#">Blazers <span class="ui-li-count">28</span></a></li>
+			<li><a href="#">Broeken <span class="ui-li-count">32</span></a></li>
+			<li><a href="#">Jurken <span class="ui-li-count">7</span></a></li>
+			<li><a href="#">Rokken <span class="ui-li-count">6</span></a></li>
+			<li><a href="#">Jassen <span class="ui-li-count">18</span></a></li>
+			<li><a href="#">Schoenen <span class="ui-li-count">24</span></a></li>
+			<li><a href="#">Accessoires <span class="ui-li-count">86</span></a></li>
+		</ul>
+	</div>
+
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+<!-- Help page -->
+<div data-role="page" id="help">
+
+	<div data-role="header">
+		<h1>Help</h1>
+		<a href="#menu" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-shop ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+		<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+		<div class="ui-body ui-body-a ui-corner-all">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<br>
+		</div>
+		<br><br>
+		<div class="ui-body ui-body-a ui-corner-all">
+		    <h4>Contactformulier</h4>
+				<p><label> <strong>Naam:</strong> Marloes Mijnders </label></p>
+				<p><label> <strong>E-mail:</strong> marloesmijnders@outlook.com </label></p>
+		    <p>
+		      	<label for="subject" id="val_subject">Onderwerp:</label>
+		      	<input type="text" name="subject" id="subject" value="" autocorrect="off" autocapitalize="on"/>
+		      	<label for="message" id="val_message">Bericht:</label>
+		      	<textarea name="textarea" id="message" autocorrect="off" autocapitalize="on"></textarea>
+			</p>
+			<p>
+		      	<a href="#" onclick="validateSupport();return true;" data-role="button" data-theme="a">Verzenden</a>
+			</p>
+		</div>
+	</div>
+
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+<!-- Settings page -->
+<div data-role="page" id="settings">
+
+	<div data-role="header">
+		<h1>Instellingen</h1>
+		<a href="#menu" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-shop ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+		<a href="#right-panel" style="float:right;" class="ui-btn ui-corner-all ui-btn-b ui-icon-bars ui-nodisc-icon ui-btn-icon-notext ui-btn-inline"></a>
+	</div>
+
+	<div role="main" class="ui-content">
+		<p><label> <strong>Naam:</strong> Marloes Mijnders </label></p>
+		<p><label> <strong>E-mail:</strong> marloesmijnders@outlook.com </label></p>
+	  <div data-role="collapsible" data-theme="c">
+			<h3>Wachtwoord wijzigen</h3>
+			<label id="val_set_password"> Wachtwoord: </label> 
+			<input type="password" class="password" id="passwd" name="passwd" placeholder="8-20 tekens" data-indicator="strengthLevel" value="" maxlength="20"/>
+			<div id="strengthLevel" class="password_strength pass_state00"> </div> 
+
+			<label id="val_set_passwordrep"> Herhaal wachtwoord: </label> 
+			<input type="password" id="passwdrep" name="passwdrep" placeholder="8-20 tekens" value="" maxlength="20"/> 
+
+			<a href="#" onclick="validatechangepass();return true;" id="changepassbutton" data-role="button" data-mini="true" data-theme="a">Wijzigen</a>
+	  </div>
+	  <br>
+	  <div class="ui-body ui-body-a">
+		<p><label> <strong>Ontvang push notificaties</strong> </label></p>
+		<div>
+			<div class="ui-block-a"><p><label> Nieuwe advertenties: </label></p></div>
+			<div class="ui-block-b" style="float:right">
+				<select name="pushpaymentreceived" id="pushpaymentreceived" data-role="slider" data-theme="a" data-mini="true">
+					<option value="false">Uit</option>
+					<option value="true" selected="">Aan</option>
+				</select>
+			</div>
+			<div class="ui-block-a"><p><label> Inbox berichten: </label></p></div>
+			<div class="ui-block-b" style="float:right">
+				<select name="pushpaymentreceived" id="pushpaymentreceived" data-role="slider" data-theme="a" data-mini="true">
+					<option value="false">Uit</option>
+					<option value="true" selected="">Aan</option>
+				</select>
+			</div>
+			<div class="ui-block-a"><p><label> Updates van vrienden: </label></p></div>
+			<div class="ui-block-b" style="float:right">
+				<select name="pushpaymentreceived" id="pushpaymentreceived" data-role="slider" data-theme="a" data-mini="true">
+					<option value="false">Uit</option>
+					<option value="true" selected="">Aan</option>
+				</select>
+			</div>
+		</div>
+	  </div>
+	  <br><br>
+	  <div class="ui-body ui-body-a">
+		<p><label> <strong>Ontvang e-mail berichten</strong> </label></p>
+		<div>
+			<div class="ui-block-a"><p><label> Nieuwe advertenties: </label></p></div>
+			<div class="ui-block-b" style="float:right">
+				<select name="pushpaymentreceived" id="pushpaymentreceived" data-role="slider" data-theme="a" data-mini="true">
+					<option value="false">Uit</option>
+					<option value="true" selected="">Aan</option>
+				</select>
+			</div>
+			<div class="ui-block-a"><p><label> Inbox berichten: </label></p></div>
+			<div class="ui-block-b" style="float:right">
+				<select name="pushpaymentreceived" id="pushpaymentreceived" data-role="slider" data-theme="a" data-mini="true">
+					<option value="false">Uit</option>
+					<option value="true" selected="">Aan</option>
+				</select>
+			</div>
+			<div class="ui-block-a"><p><label> Updates van vrienden: </label></p></div>
+			<div class="ui-block-b" style="float:right">
+				<select name="pushpaymentreceived" id="pushpaymentreceived" data-role="slider" data-theme="a" data-mini="true">
+					<option value="false">Uit</option>
+					<option value="true" selected="">Aan</option>
+				</select>
+			</div>
+		</div>
+	  </div>
+
+	</div>
+
+	<!-- Right panel  -->
+	<div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+		<h3>Menu</h3>
+		<ul data-role="listview">
+			<li data-icon="user"><a href="#profile">Profiel</a></li>
+			<li data-icon="mail"><a href="#inbox">Inbox</a></li>
+			<li data-icon="home"><a href="#closet">Mijn kledingkast</a></li>
+			<li data-icon="heart"><a href="#favourites">Mijn favorieten</a></li>
+			<li data-icon="tag"><a href="#categories">Categorieën</a></li>
+			<li data-icon="star"><a href="#inbox">Vrienden</a></li>
+			<li data-icon="gear"><a href="#settings">Instellingen</a></li>
+			<li data-icon="info"><a href="#help">Help</a></li>
+			<li></li>
+			<li data-icon="power"><a href="#login">Uitloggen</a></li>
+			<li></li>
+			<li data-icon="back"><a href="#" data-rel="close">Sluiten</a></li>
+		</ul>
+	</div>
+	<!-- /Right panel  -->
+
+	<div data-role="footer">
+		<h6 style="font-size:0.7em">&copy; 2015ff ThriftShop</h6>
+	</div>
+</div>
+
+</body>
+</html>
